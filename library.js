@@ -30,7 +30,7 @@ plugin.addAdminNavigation = function(header, callback) {
 plugin.getTopics = async (data, callback) => {
 	db.getObjectField('settings:dynamic-labels', 'labels', function(err, labels) {
 		if (err || !labels) {
-			return callback(err);
+			return callback(err, data);
 		}
 
 		labels = JSON.parse(labels);
