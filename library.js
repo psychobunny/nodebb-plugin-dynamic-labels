@@ -69,7 +69,6 @@ plugin.getTopics = async (data, callback) => {
 				var today = new Date();
 				var createtime = new Date(post.timestamp);
 				var edittime = new Date(post.edited);
-				console.log(post.timestamp, post.edited);
 
 				if (err) {
 					return callback(err);
@@ -78,7 +77,6 @@ plugin.getTopics = async (data, callback) => {
 				if (post.edited) {
 					updatedLabels.forEach(function(label) {
 						var days = parseInt(label.days, 10);
-						console.log(days, today - edittime);
 						if (days >= ((today - edittime) / 3600 / 24 / 1000)) {
 							postLabel = label;
 						}
@@ -96,7 +94,6 @@ plugin.getTopics = async (data, callback) => {
 
 				if (postLabel) {
 					data.topics[index].label = '<span class="dynamic-label label" data-status="' + postLabel.status + '" style="background-color:' + postLabel.bgColor + '; color: ' + postLabel.color + '; border: 1px solid ' + postLabel.color + ';">' + postLabel.status + '</span>';
-					console.log(data.topics[index].label);
 				}
 			});
 		
