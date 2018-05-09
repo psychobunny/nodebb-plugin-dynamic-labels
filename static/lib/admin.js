@@ -8,14 +8,16 @@ define('admin/plugins/dynamic-labels', ['settings', 'admin/modules/colorpicker']
 	admin.init = function () {
 		settings.load('dynamic-labels', $('.dynamic-labels-settings'), renderStatusList);
 
-		$('#save').on('click', function () {
-			settings.save('dynamic-labels', $('.dynamic-labels-settings'), function () {
-				app.alertSuccess('Successfully saved settings');
-			});
-		});
+		$('#save').on('click', saveSettings);
 
 		$('#newStatus').on('click', createNewStatus);
 	};
+
+	function saveSettings() {
+		settings.save('dynamic-labels', $('.dynamic-labels-settings'), function () {
+			app.alertSuccess('Successfully saved settings');
+		});
+	}
 
 	function createNewStatus(ev) {
 		var modal = $('#newStatus-modal').modal('show');
@@ -63,6 +65,7 @@ define('admin/plugins/dynamic-labels', ['settings', 'admin/modules/colorpicker']
 			renderStatusList();
 
 			modal.modal('hide');
+			saveSettings();
 		});
 		ev.preventDefault();
 		return false;
