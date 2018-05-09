@@ -8,7 +8,7 @@ $(document).ready(function() {
 				var label = ajaxify.data.topics[i].label;
 
 				if (label) {
-					$('[component="category/topic"][data-tid="' + tid + '"] [component="topic/header"] .hidden-xs').after(label);
+					$('[component="category/topic"][data-tid="' + tid + '"] [component="topic/header"] small.hidden-xs').after(label);
 				}
 			}
 		}
